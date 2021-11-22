@@ -41,7 +41,7 @@ trait StoreTrait
         return $metafields;
     }
 
-    public function createMetafield(Product $product, $data)
+    public function createMetafield(Product $product, $data = null)
     {
         $data = array_merge([
             "metafield" => [
