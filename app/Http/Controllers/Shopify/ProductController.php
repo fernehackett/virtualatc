@@ -28,11 +28,11 @@ class ProductController extends Controller
     {
         $product->update($request->all());
 
-        if ($product->enable === 1 && !isset($product->metafield_id)) {
+        if ($product->enable == 1 && !isset($product->metafield_id)) {
             auth()->user()->createMetafield($product);
         }
 
-        if ($product->enable === 0 && isset($product->metafield_id)) {
+        if ($product->enable == 0 && isset($product->metafield_id)) {
             auth()->user()->deleteMetafield($product);
             $product->update(["metafield_id" => null]);
         }
