@@ -6,6 +6,7 @@ Route::group(['middleware' => ["verify.shopify", "billable"]], function () {
         Route::post("shop/setup", "DashboardController@setup")->name("shop.setup");
         Route::resource("products", "ProductController");
         Route::post("product/bulk", "ProductController@bulk")->name("product.bulk");
+        Route::get("product/sync", "ProductController@sync")->name("product.sync");
     });
 });
 Route::get('policy', 'HomeController@policy')->name("policy");

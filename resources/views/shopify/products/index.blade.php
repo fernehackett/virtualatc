@@ -25,6 +25,7 @@
             <a href="{{ route("shopify.product.bulk") }}" class="bulkEnable btn btn-outline-success">Enable selected</a>
             <a href="{{ route("shopify.product.bulk") }}" class="bulkDisable btn btn-outline-secondary">Disabled
                 selected</a>
+            <a href="{{ route("shopify.product.sync") }}" class="sync btn btn-outline-primary">Sync</a>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -114,6 +115,21 @@
                 }
             })
         }
+        $(".table-actions .sync").on("click", function (e) {
+            e.preventDefault();
+            $.ajax({
+                "url": $(this).attr("href")
+            }).done(function(res){
+                if(res.succeed === true) {
+                    var Toast = actions.Toast;
+                    var toastNotice = Toast.create(app, {
+                        message: res.msg,
+                        duration: 3000,
+                    });
+                    toastNotice.dispatch(Toast.Action.SHOW);
+                }
+            })
+        })
         $(".table-actions .bulkEnable").on("click", function (e) {
             e.preventDefault();
             bulkProducts($(this).attr("href"), {

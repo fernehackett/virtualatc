@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shopify;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SyncProducts;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -42,5 +43,11 @@ class ProductController extends Controller
         $product_ids = $request->get("product_ids",[]);
         $products = Product::whereIn("id", $product_ids)->update($request->get("update"));
         return response()->json(["succeed" => true,"msg" => "Saved!"]);
+    }
+
+    public function sync()
+    {
+        SyncProducts::dispatch(auth()->user()->getDomain()->toNative());
+        return response()->json(["succeed" => true,"msg" => "Syncing!"]);
     }
 }
