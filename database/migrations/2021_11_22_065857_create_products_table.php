@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string("shopify_url");
             $table->text("image");
             $table->text("title");
+            $table->string("metafield_id")->nullable();
             $table->tinyInteger("enable")->default(0);
             $table->timestamps();
         });

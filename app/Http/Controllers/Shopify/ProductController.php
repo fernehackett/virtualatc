@@ -26,6 +26,14 @@ class ProductController extends Controller
     public function update(Product $product, Request $request)
     {
         $product->update($request->all());
+
+        if($product->enable === 1 && !isset($product->metafield_id)){
+            auth()->user()->createMetafield($product);
+        }
+
+        if($product->enable === 0 && isset($product->metafield_id)){
+            auth()->user()->deleteMetafield($product);
+        }
         return response()->json(["succeed" => true,"msg" => "Saved!"]);
     }
 

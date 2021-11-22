@@ -36,6 +36,7 @@
                             <label class="custom-control-label" for="customCheck"></label>
                         </div>
                     </th>
+                    <th>Banner</th>
                     <th>Title</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -52,10 +53,10 @@
                                 <label class="custom-control-label" for="customCheck{{ $product->id }}"></label>
                             </div>
                         </td>
+                        <td class="text-wrap banner"><img src="{{ $product->image }}" style="max-width: 150px; max-height: 150px;"></td>
                         <td class="text-wrap title">{{ $product->title }}</td>
                         <td class="text-wrap status">
-                            @if($product->enable == 1) <span class="badge badge-success">Enabled</span> @else <span
-                                    class="badge badge-secondary">Disabled</span> @endif
+                            @if($product->enable == 1) <span class="badge badge-success">Enabled</span> @else <span class="badge badge-secondary">Disabled</span> @endif
                         </td>
                         <td>
                             <ul class="list-group list-inline">

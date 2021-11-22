@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["_id", "title", "enable", "shopify_url","image"];
+    protected $fillable = ["_id", "title", "enable", "shopify_url", "image", "metafield_id"];
 
     /*
     |------------------------------------------------------------------------------------

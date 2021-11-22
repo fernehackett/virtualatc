@@ -5,7 +5,6 @@ Route::group(['middleware' => ["verify.shopify", "billable"]], function () {
     Route::group(["as" => "shopify.", "namespace" => "Shopify"], function () {
         Route::post("shop/setup", "DashboardController@setup")->name("shop.setup");
         Route::resource("products", "ProductController");
-        Route::resource("metafields", "MetaFieldController");
         Route::post("product/bulk", "ProductController@bulk")->name("product.bulk");
     });
 });
