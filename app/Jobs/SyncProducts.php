@@ -65,6 +65,6 @@ class SyncProducts implements ShouldQueue
         $nextParams = array_merge($data, [
             "since_id" => $since_id
         ]);
-        self::dispatch($shopDomain, $nextParams);
+        self::dispatch($shop->getDomain()->toNative(), $nextParams);
     }
 }
