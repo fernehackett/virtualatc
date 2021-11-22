@@ -52,7 +52,7 @@ trait StoreTrait
             ]
         ], $data);
         $response = $this->api()->rest('POST', "/admin/api/products/{$product->_id}/metafields.json", $data);
-        $metafield = $response["body"]["metafield"];
+        $metafield = $response["body"]["metafields"];
         $product->update([
             "enable"       => 1,
             "metafield_id" => $metafield["id"]
