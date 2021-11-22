@@ -3,7 +3,7 @@
     document.querySelectorAll(".virtual-atc-block").forEach(function(elm){
         let product_id = elm.getAttribute("data-product-id");
         let enable = elm.getAttribute("data-enable");
-        if(enable == true){
+        if(enable == "true"){
             let people = sessionStorage.getItem(product_id);
             if(!people){
                 let gte = parseInt(data.gte);
