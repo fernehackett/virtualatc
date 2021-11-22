@@ -13,11 +13,11 @@ class ProductController extends Controller
     {
         $products = Product::where("shopify_url", auth()->user()->name);
         $search = $request->get("search", false);
-        if($search){
-            $products = $products->where("title","like", "%{$search}%");
+        if ($search) {
+            $products = $products->where("title", "like", "%{$search}%");
         }
         $enable = $request->get("enable", false);
-        if($enable !== false){
+        if ($enable !== false) {
             $products = $products->where("enable", "{$enable}");
         }
         $products = $products->paginate(20);
@@ -28,26 +28,27 @@ class ProductController extends Controller
     {
         $product->update($request->all());
 
-        if($product->enable === 1 && !isset($product->metafield_id)){
+        if ($product->enable === 1 && !isset($product->metafield_id)) {
             auth()->user()->createMetafield($product);
         }
 
-        if($product->enable === 0 && isset($product->metafield_id)){
+        if ($product->enable === 0 && isset($product->metafield_id)) {
             auth()->user()->deleteMetafield($product);
+            $product->update(["metafield_id" => null]);
         }
-        return response()->json(["succeed" => true,"msg" => "Saved!"]);
+        return response()->json(["succeed" => true, "msg" => "Saved!"]);
     }
 
     public function bulk(Request $request)
     {
-        $product_ids = $request->get("product_ids",[]);
+        $product_ids = $request->get("product_ids", []);
         $products = Product::whereIn("id", $product_ids)->update($request->get("update"));
-        return response()->json(["succeed" => true,"msg" => "Saved!"]);
+        return response()->json(["succeed" => true, "msg" => "Saved!"]);
     }
 
     public function sync()
     {
         SyncProducts::dispatch(auth()->user()->getDomain()->toNative());
-        return response()->json(["succeed" => true,"msg" => "Syncing!"]);
+        return response()->json(["succeed" => true, "msg" => "Syncing!"]);
     }
 }
