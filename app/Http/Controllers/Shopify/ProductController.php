@@ -33,7 +33,7 @@ class ProductController extends Controller
         }
 
         if ($product->enable == 0 && isset($product->metafield_id)) {
-            auth()->user()->deleteMetafield($product);
+            auth()->user()->deleteMetafield($product->metafield_id);
             $product->update(["metafield_id" => null]);
         }
         return response()->json(["succeed" => true, "msg" => "Saved!"]);
