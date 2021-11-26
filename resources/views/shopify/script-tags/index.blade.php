@@ -1,4 +1,4 @@
-if(VirtualATCEnable == true)
+if(VirtualATCEnable == true){
 @if($user->enable)
     let data = JSON.parse(`{!! json_encode($user->data) !!}`)
     document.querySelectorAll(".virtual-atc-block").forEach(function(elm){
@@ -18,3 +18,4 @@ if(VirtualATCEnable == true)
         }
     });
 @endif
+}
