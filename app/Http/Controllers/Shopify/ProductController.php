@@ -21,6 +21,9 @@ class ProductController extends Controller
             $products = $products->where("enable", "{$enable}");
         }
         $products = $products->paginate(20);
+        if(count($products) == 0){
+            $this->sync();
+        }
         return view("shopify.products.index", compact("products"));
     }
 
