@@ -323,7 +323,7 @@ return [
         [
             'topic'   => env('SHOPIFY_WEBHOOK_1_TOPIC', 'APP_UNINSTALLED'),
             'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', trim(env('APP_URL'), '/') . '/webhook/app-uninstalled?action=uninstalled')
-        ],
+        ]
     ],
 
     /*
@@ -365,7 +365,7 @@ return [
     'after_authenticate_job' => [
         [
             'job'    => env('AFTER_AUTHENTICATE_JOB', \App\Jobs\SyncProducts::class), // example: \App\Jobs\SyncProducts::class
-            'inline' => env('AFTER_AUTHENTICATE_JOB_INLINE', false) // False = dispatch job for later, true = dispatch immediately
+            'inline' => env('AFTER_AUTHENTICATE_JOB_INLINE', true) // False = dispatch job for later, true = dispatch immediately
         ]
         /*
         [
