@@ -25,7 +25,7 @@
             <a href="{{ route("shopify.product.bulk") }}" class="bulkEnable btn btn-outline-success">Enable selected</a>
             <a href="{{ route("shopify.product.bulk") }}" class="bulkDisable btn btn-outline-secondary">Disabled
                 selected</a>
-            <a href="{{ route("shopify.product.sync") }}" class="sync btn btn-outline-primary">Sync</a>
+            <a href="{{ route("shopify.product.sync") }}" class="sync btn btn-outline-primary">Re-Sync</a>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">
