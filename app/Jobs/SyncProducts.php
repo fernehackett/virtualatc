@@ -38,8 +38,12 @@ class SyncProducts implements ShouldQueue
     public function handle(Shop $shopQuery)
     {
         \Log::info($this->shopDomain);
-        $shopDomain = ShopDomain::fromNative($this->shopDomain);
-        $shop = $shopQuery->getByDomain($shopDomain);
+        if(is_string($this->shopDomain)) {
+            $shopDomain = ShopDomain::fromNative($this->shopDomain);
+            $shop = $shopQuery->getByDomain($shopDomain);
+        }else{
+            $shop = $this->shopDomain;
+        }
         $data = $this->data;
         if (!$data) {
             $data = [
